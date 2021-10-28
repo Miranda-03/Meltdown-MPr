@@ -1,7 +1,8 @@
 function mostrarAlumno(){
     $.ajax ({
-        url: "http://localhost:8080/api/datos/alumnos",
+        url: "http://localhost:8080/api/alumnos/",
         type: "GET",
+        data : {id: 102, nombre: "Carlos", edad: 18}
     })
     .done(function(data){
         let saludo = data.mensaje;
@@ -21,8 +22,7 @@ function mostrarAlumno(){
 }function agregarAlumno(){
     $.ajax ({
         url: "http://localhost:8080/api/alumnos/",
-        type: "POST",
-        data : {id: 102, nombre: "Carlos", edad: 18}
+        type: "POST"
     })
     .done(function(response){
         let saludo = response.mensaje;
