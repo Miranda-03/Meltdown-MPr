@@ -129,14 +129,15 @@ public class AccesoBaseDeDatos {
         return nombresDeCampos;
     }
 
-    public HashMap<String,Integer> obtenerDatos() throws SQLException {
-        HashMap<String,Integer >datos = new HashMap<>();
-        ResultSet resultado = this.obtenerResultado("select nombre, edad from alumnos");
-        while (resultado.next()){
-            String nombre = resultado.getString("Nombre");
-            Integer edad = resultado.getInt("Edad");
-            datos.put(nombre, edad);
+    public HashMap<String,Object> obtenerDatos() throws SQLException {
+        HashMap<String,Object >datos = new HashMap<>();
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+        ResultSet resultado = this.obtenerResultado("select * from alumnos");
+        while(resultado.next()){
+            Alumno ln = new Alumno(resultado.getInt("id"), resultado.getString("Nombre"), resultado.getInt("Edad"));
+            alumnos.add(ln);
         }
+        datos.put("Alumnos", alumnos);
         return datos;
     }
 
@@ -144,7 +145,6 @@ public class AccesoBaseDeDatos {
         String Nombre = alumno.getNombre();
         int Edad = alumno.getEdad();
         int id = alumno.getId();
-       // String consulta = "INSERT INTO " + this.nombreTabla + "VALUES(" + id + "," + '"' + Nombre + '"' + "," + Edad + ")";
         String consulta = "INSERT INTO " + this.nombreTabla + "(id , nombre , edad) VALUES" + "(" + id + "," + '"'+  Nombre + '"' + "," + Edad + ")";
         this.modificarTabla(consulta);
     }

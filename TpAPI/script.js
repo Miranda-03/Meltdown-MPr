@@ -26,6 +26,29 @@ function mostrarAlumno(){
 
 
 
+function obtenerAlumno(){
+    let id = $("#input-id-select").val()
+    $.ajax ({
+        url: "http://localhost:8080/api/datos/alumnos/" + id,
+        type: "GET"
+    })
+    .done(function(data){
+        let info = new Map;
+        info = JSON.stringify(data);
+        document.getElementById("datos-alumno-seleccionado").innerHTML = info;
+        console.log(info)
+        
+    })
+    .fail(function(jqXHR,textStatus, errorTrhow){
+        console.log("error, no se encontraron datos")
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorTrhow)
+    })
+}
+
+
+
 
 function agregarAlumno(){
     let nombre = $("#input-nombre").val();
@@ -106,6 +129,7 @@ function mostrarInputsActualizar(){
     $("#mostrar-datos").css("display", "none");
     $("#ingresar-datos").css("display", "none");
     $("#inputs-actualizar").css("display", "block")
+    $("#alumnoID").css("display", "none");
 }
 
 
@@ -114,10 +138,20 @@ function mostrarInputs(){
     $("#mostrar-datos").css("display", "none");
     $("#eliminar-datos").css("display", "none");
     $("#inputs-actualizar").css("display", "none")
+    $("#alumnoID").css("display", "none");
 }
 
 function mostrarInputsEliminar(){
     $("#eliminar-datos").css("display", "block");
+    $("#mostrar-datos").css("display", "none");
+    $("#ingresar-datos").css("display", "none");
+    $("#inputs-actualizar").css("display", "none")
+    $("#alumnoID").css("display", "none");
+}
+
+function mostrarObtenerAlumno(){
+    $("#alumnoID").css("display", "block");
+    $("#eliminar-datos").css("display", "none");
     $("#mostrar-datos").css("display", "none");
     $("#ingresar-datos").css("display", "none");
     $("#inputs-actualizar").css("display", "none")

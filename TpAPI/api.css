@@ -29,6 +29,7 @@
     border-radius: 5px;
     display: flex;
     align-items: center;
+    padding: 0px 15px 0px 15px;
 }
 
 #botones{
@@ -69,3 +70,43 @@ button{
 #inputs-actualizar{
     display: none;
 }
+
+.container {
+    position: relative;
+    background: #2c3e50;
+    height: 50vh;
+  }
+  
+  .wave {
+    position: absolute;
+    height: 35px;
+    width: 100%;
+    background: #bd385f;
+    bottom: 0;
+  }
+  
+  .wave::before, .wave::after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 50% 100%;
+  }
+  
+  .wave::before {
+    width: 55%;
+    height: 100%;
+    background-color: #bd385f;
+    right: -1.5%;
+    top: 40%;
+  }
+  .wave::after {
+    width: 55%;
+    height: 109%;
+    background-color: #fff;
+    left: -1.5%;
+    top: 60%;
+  }
+
+  #alumnoID{
+      display: none;
+  }

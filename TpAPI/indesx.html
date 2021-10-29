@@ -9,11 +9,20 @@
     <link rel="icon" type="image/xcf" href="mw.png">
 </head>
 <body>
-<div id="inicio">
-        <h1> Miranda Martin</h1>
-        <h1> Peréz Rossi Agustin</h1>
+
+
+<section >
+    <div class="container" id="inicio">
+        <div>
+            <h1> Miranda Martin</h1>
+            <h1> Peréz Rossi Agustin</h1>
+        </div>
         <h2>3° CST Computación</h2>
-</div>
+        <div class="wave">
+
+        </div>
+    </div>
+  </section>
 <div id="contenido">
 
 
@@ -21,13 +30,16 @@
         <button id="mostrarAlumnos" class="primerBoton" onclick="mostrarAlumno()">
             Mostrar Alumnos 
         </button>
-        
+        <button id="obtenerAlumno" onclick="mostrarObtenerAlumno()">
+            Seleccionar alumno
+        </button>
         <button id="agregarAlumno" onclick="mostrarInputs()">
             Agregar Alumno
         </button>
         <button id="eliminarAlumno" onclick="mostrarInputsEliminar()">
             Eliminar Alumno
         </button>
+        
         <button id="actualizarAlumno" onclick="mostrarInputsActualizar()">
             Actualizar Alumno
         </button>
@@ -62,6 +74,13 @@
             <input type="text" id="input-dato-mod" class="input-mod" >
             <button id="boton-mod-nombre" onclick="cambiar(1)">Cambiar nombre</button>
             <button id="boton-mod-edad" onclick="cambiar(2)">Cambiar edad</button>
+        </div>
+        
+        <div id="alumnoID">
+            <p>Ingresar ID del alumno</p>
+            <input type="text" id="input-id-select" class="input-mod">
+            <button id="boton-select" onclick="obtenerAlumno()">Obtener info</button>
+            <p id="datos-alumno-seleccionado"></p>
         </div>
 
 
