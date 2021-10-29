@@ -19,7 +19,7 @@
     align-content: center;
     align-items: center;
     justify-content: space-around;
-    margin-top: 70px;
+    margin-top: 30px;
 }
 
 #informacion{
@@ -80,7 +80,7 @@ button{
   .wave {
     position: absolute;
     height: 35px;
-    width: 100%;
+    width: 97%;
     background: #bd385f;
     bottom: 0;
   }
