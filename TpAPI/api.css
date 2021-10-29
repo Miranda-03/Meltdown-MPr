@@ -47,7 +47,6 @@ button{
 }
 #mostrarAlumnos:hover::after{
     opacity: 1;
-
 }
 #agregarAlumno::after{
     content: "Se agrega  un alumno a la base de datos";

@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,18 +30,49 @@ public class Controller {
     @RequestMapping(value = "/datos/alumnos", method = RequestMethod.GET)
     public ResponseEntity<Object> obtenerPaginas() throws SQLException {
         this.accesoABaseDeDatos.conectar("martin", "0103200403");
-        HashMap<String, Integer> datos  = accesoABaseDeDatos.obtenerDatos();;
-        System.out.println(datos.get("Martin"));
-        datos.put("hola", 2);
+        HashMap<String, Integer> datos  = accesoABaseDeDatos.obtenerDatos();
         return new ResponseEntity<>(datos, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/datos/alumnos", method = RequestMethod.POST)
-    public ResponseEntity<Object> agregarPagina(@RequestBody HashMap alumno) {
-        String nombre = (String) alumno.get("nombre");
-        int edad = (int) alumno.get("edad");
-        Alumno nuevoAlumno = new Alumno(nombre, edad);
+    @RequestMapping(value = "/datos/alumnos/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Object> obtenerAlumno(@PathVariable int id) throws SQLException {
+        this.accesoABaseDeDatos.conectar("martin", "0103200403");
+        HashMap<String, Integer> datos = new HashMap<>();
+        ResultSet resultado = this.accesoABaseDeDatos.obtenerResultado("select Nombre, Edad from alumnos where id = " + id);
+        while (resultado.next()){
+            String nombre = resultado.getString("Nombre");
+            Integer edad = resultado.getInt("Edad");
+            datos.put(nombre, edad);
+        }
+        return new ResponseEntity<>(datos, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/datos/alumnos/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Object> agregarPagina(@RequestBody HashMap alumno, @PathVariable int id){
+        this.accesoABaseDeDatos.conectar("martin", "0103200403");
+        String nombre = (String) alumno.get("Nombre");
+        int edad = (int) alumno.get("Edad");
+        Alumno nuevoAlumno = new Alumno(id, nombre, edad);
         accesoABaseDeDatos.agregarAlumno(nuevoAlumno);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/datos/alumnos/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<Object> modificarAlumno(@RequestBody Object dato, @PathVariable int id){
+        this.accesoABaseDeDatos.conectar("martin", "0103200403");
+        if(dato.getClass().getName().equals("java.lang.Integer")){
+            accesoABaseDeDatos.modificarTabla("update alumnos set edad = " + dato + " where id = " + id);
+        }
+        else {
+            accesoABaseDeDatos.modificarTabla("update alumnos set Nombre = " + '"' + dato + '"' +" where id = " + id);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/datos/alumnos/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> liquidarAlumno(@PathVariable int id){
+        this.accesoABaseDeDatos.conectar("martin", "0103200403");
+        accesoABaseDeDatos.modificarTabla("delete from alumnos where id = " + id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

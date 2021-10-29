@@ -14,7 +14,6 @@ public class AccesoBaseDeDatos {
     private String nombreTabla;
 
     public AccesoBaseDeDatos(){
-        /** completar **/
         this.nombreBaseDeDatos = "personas";
         this.nombreTabla = "alumnos";
     }
@@ -142,13 +141,11 @@ public class AccesoBaseDeDatos {
     }
 
     public void agregarAlumno(Alumno alumno) {
-        /** completar **/
+        String Nombre = alumno.getNombre();
+        int Edad = alumno.getEdad();
+        int id = alumno.getId();
+        String consulta = "INSERT INTO " + this.nombreTabla + "VALUES" + "(" + id + "," + '"' + Nombre + '"' + "," + Edad + ")";
+        this.modificarTabla(consulta);
     }
-
-    /*
-    Colocar mysql-connector-java-8.0.21.jar en una carpeta llamada lib
-
-    File -> Project Structure -> + -> JARs y directorios ->
-    seleccionar mysql-connector-java-8.0.21.jar -> tildar -> aplicar -> ok
-    */
+    
 }
