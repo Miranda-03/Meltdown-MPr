@@ -14,24 +14,59 @@
         <h1> Peréz Rossi Agustin</h1>
         <h2>3° CST Computación</h2>
 </div>
-<div id="botones">
-    <button id="mostrarAlumnos" class="primerBoton" onclick="mostrarAlumno()">
-        Mostrar Alumnos 
-    </button>
-    
-    <button id="agregarAlumno" onclick="agregarAlumno()">
-        Agregar Alumno
-    </button>
-    <button id="eliminarAlumno" onclick="borrarAlumno()">
-        Eliminar Alumno
-    </button>
-    <button id="actualizarAlumno" onclick="actualizarAlumno()">
-        Actualizar Alumno
-    </button>
+<div id="contenido">
 
-</div>
-<div id="github">
-        <img src="git.png">
+
+    <div id="botones">
+        <button id="mostrarAlumnos" class="primerBoton" onclick="mostrarAlumno()">
+            Mostrar Alumnos 
+        </button>
+        
+        <button id="agregarAlumno" onclick="mostrarInputs()">
+            Agregar Alumno
+        </button>
+        <button id="eliminarAlumno" onclick="mostrarInputsEliminar()">
+            Eliminar Alumno
+        </button>
+        <button id="actualizarAlumno" onclick="mostrarInputsActualizar()">
+            Actualizar Alumno
+        </button>
+
+    </div>
+
+    <div id="informacion">
+
+        <p id="mostrar-datos"></p>
+
+        <div id="ingresar-datos">
+            <p>Ingrese un id</p>
+            <input type="text" id="input-id" class="input-datos">
+            <p>Ingrese un nombre</p>
+            <input type="text" id="input-nombre" class="input-datos">
+            <p>ingrese una edad</p>
+            <input type="text" id="input-edad" class="input-datos" >
+            <button id="boton-ingresar" onclick="agregarAlumno()">ingresar</button>
+        </div>
+
+
+        <div id="eliminar-datos">
+            <p>ingrese un id para eliminar</p>
+            <input type="text" id="input-id-eliminar">
+            <button id="boton-eliminar" onclick="borrarAlumno()">borrar</button>
+        </div>
+
+        <div id="inputs-actualizar">
+            <p>Ingrese el id del alumno</p>
+            <input type="text" id="input-id-mod" class="input-mod" >
+            <p>Ingrese el nuevo dato</p>
+            <input type="text" id="input-dato-mod" class="input-mod" >
+            <button id="boton-mod-nombre" onclick="cambiar(1)">Cambiar nombre</button>
+            <button id="boton-mod-edad" onclick="cambiar(2)">Cambiar edad</button>
+        </div>
+
+
+    </div>
+
 </div>
 
 </body>

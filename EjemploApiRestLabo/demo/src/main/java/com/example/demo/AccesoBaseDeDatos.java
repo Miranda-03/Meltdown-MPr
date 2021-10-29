@@ -144,7 +144,8 @@ public class AccesoBaseDeDatos {
         String Nombre = alumno.getNombre();
         int Edad = alumno.getEdad();
         int id = alumno.getId();
-        String consulta = "INSERT INTO " + this.nombreTabla + "VALUES" + "(" + id + "," + '"' + Nombre + '"' + "," + Edad + ")";
+       // String consulta = "INSERT INTO " + this.nombreTabla + "VALUES(" + id + "," + '"' + Nombre + '"' + "," + Edad + ")";
+        String consulta = "INSERT INTO " + this.nombreTabla + "(id , nombre , edad) VALUES" + "(" + id + "," + '"'+  Nombre + '"' + "," + Edad + ")";
         this.modificarTabla(consulta);
     }
     

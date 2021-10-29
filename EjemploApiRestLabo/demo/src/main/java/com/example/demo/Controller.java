@@ -51,7 +51,7 @@ public class Controller {
     public ResponseEntity<Object> agregarPagina(@RequestBody HashMap alumno, @PathVariable int id){
         this.accesoABaseDeDatos.conectar("martin", "0103200403");
         String nombre = (String) alumno.get("Nombre");
-        int edad = (int) alumno.get("Edad");
+        int edad = (Integer)  alumno.get("Edad");
         Alumno nuevoAlumno = new Alumno(id, nombre, edad);
         accesoABaseDeDatos.agregarAlumno(nuevoAlumno);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -71,6 +71,7 @@ public class Controller {
 
     @RequestMapping(value = "/datos/alumnos/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> liquidarAlumno(@PathVariable int id){
+        System.out.println(id);
         this.accesoABaseDeDatos.conectar("martin", "0103200403");
         accesoABaseDeDatos.modificarTabla("delete from alumnos where id = " + id);
         return new ResponseEntity<>(HttpStatus.OK);
